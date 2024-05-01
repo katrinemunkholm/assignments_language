@@ -1,0 +1,6 @@
+gensim
+pandas
+numpy
+sys
+os
+argparse
