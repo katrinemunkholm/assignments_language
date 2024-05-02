@@ -1,9 +1,13 @@
 assignment1/in/USEcorpus/
+assignment1/env
 
 assignment2/in/fake_or_real_news.csv
+assignment2/env
 
 assignment3/in/Spotify Million Song Dataset_exported.csv
+assignment3/env
 
 assignment4/in/Game_of_Thrones_Script.csv
+assignment4/env
 
 git_config.sh

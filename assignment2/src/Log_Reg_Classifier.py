@@ -83,9 +83,9 @@ def save_results(out_folder, models_folder, classifier_report, classifier, vecto
 # Defining main() to perform task from functions
 def main():
     # Defining path to folders 
-    data_path = os.path.join("..", "in", "fake_or_real_news.csv")
-    out_folder = "../out"
-    models_folder = "../models"
+    data_path = os.path.join("in", "fake_or_real_news.csv")
+    out_folder = "out"
+    models_folder = "models"
 
     # Load data
     data = load_data(data_path)

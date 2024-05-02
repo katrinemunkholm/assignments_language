@@ -66,8 +66,8 @@ def processing_text(file_path):
 def main():
    
     # Defining path to folders 
-    data_path = os.path.join("..", "in", "USEcorpus")
-    output_path = os.path.join("..", "out")
+    data_path = os.path.join("in", "USEcorpus")
+    output_path = os.path.join("out")
     dirs = sorted(os.listdir(data_path))
 
     # Looping through the folders and creating a dataframe for each folder that contains the relative frequency of the pos tags and the unique entities for each text file

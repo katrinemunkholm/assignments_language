@@ -72,19 +72,14 @@ assignment1/
 └── README.md
 ```
 
-2. Install required packages by running the following code in the command line:
+2. By running the following code in the command line, an environment is created and requirements are installed:
 
-```pip install -r requirements.txt```
-
-
-3. Download spaCy model by running the following in the command line:
-
-```python -m spacy download en_core_web_md```
+```bash setup.sh```
 
 
-4. Run the script by executing:
+3. Activate the environment and run the script by executing:
 
-``` python script_linguistic_features.py ```
+```bash run.sh```
 
 ## Output
 

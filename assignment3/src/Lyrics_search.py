@@ -108,7 +108,7 @@ def main():
     args = parser.parse_args()
 
     # Load the song lyric data
-    data = load_lyric_data("../in/Spotify Million Song Dataset_exported.csv")
+    data = load_lyric_data("in/Spotify Million Song Dataset_exported.csv")
 
     # Load the word embedding model
     model = api.load("glove-wiki-gigaword-50")
@@ -125,7 +125,7 @@ def main():
         Search_results = {'artist': args.artist, 'Search Term': args.search_term, 'Percentage': percentage}
 
         # Save results to CSV
-        output_file = "../out/Search_results.csv"
+        output_file = "out/Search_results.csv"
         save_to_csv(Search_results, output_file)
         print("Results saved to:", output_file)
     else:

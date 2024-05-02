@@ -61,15 +61,15 @@ assignment2/
 
 2. Install required packages by running the following code in the command line:
 
-```pip install -r requirements.txt```
+```bash setup.sh```
 
 3. Run the scripts by executing:
 
-``` python Log_Reg_Classifier.py ```
+``` bash runLogReg.sh ```
 
 and / or
 
-``` python MLP_Classifier.py ```
+``` bash runMLP.sh ```
 
 ## Output and results
 
