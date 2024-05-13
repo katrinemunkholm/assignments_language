@@ -43,8 +43,8 @@ assignment3/
 
 2. To run the script, use the following command:
 
-```bash
-python Lyrics_search.py --artist "Artist Name" --search-term "Search Term"
+```
+bash run.sh --artist "Artist Name" --search-term "Search Term"
 ```
 
 ## Output

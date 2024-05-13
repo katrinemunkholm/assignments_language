@@ -80,9 +80,9 @@ def analyze_season_emotions(data, out_dir, classifier):
         plt.close()
 
 def main():
-    csv_file = "../in/Game_of_Thrones_Script.csv"
+    csv_file = "in/Game_of_Thrones_Script.csv"
     data = load_data(csv_file)
-    out_dir = "../out"
+    out_dir = "out"
     classifier = get_emotion_pipeline()
     
     analyze_season_emotions(data, out_dir, classifier)
