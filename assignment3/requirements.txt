@@ -1,3 +1,4 @@
 gensim==4.3.2
 numpy==1.26.4
 pandas==2.2.2
+codecarbon==2.3.5

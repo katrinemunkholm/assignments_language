@@ -16,7 +16,9 @@ import gensim
 import gensim.downloader
 import gensim.downloader as api
 from gensim.models import KeyedVectors
+from codecarbon import EmissionsTracker
 model = api.load("glove-wiki-gigaword-50")
+
 
 # Add parent directory to python module path
 sys.path.append(os.path.join('..'))
@@ -107,13 +109,23 @@ def main():
     parser.add_argument("--search-term", type=str, help="Target word for query expansion", required=True)
     args = parser.parse_args()
 
+    # Start CodeCarbon tracker
+    tracker = EmissionsTracker(project_name="Lyrics Analysis", 
+                              experiment_id="lyrics_analysis",
+                              output_dir = os.path.join("out"))
+
     # Load the song lyric data
+    tracker.start_task("load_data")
     data = load_lyric_data("in/Spotify Million Song Dataset_exported.csv")
+    tracker.stop_task()
 
     # Load the word embedding model
+    tracker.start_task("load_model")
     model = api.load("glove-wiki-gigaword-50")
+    tracker.stop_task()
 
     # Expand the query
+    tracker.start_task("Query_expansion")
     expanded_query = expand_query(model, args.search_term, top_n=5)
 
     if expanded_query:
@@ -130,6 +142,10 @@ def main():
         print("Results saved to:", output_file)
     else:
         print("Query expansion failed. Please try another search term.")
+    tracker.stop_task()
+
+    # Stop tracking emissions
+    _ = tracker.stop()
 
 if __name__ == "__main__":
     main()

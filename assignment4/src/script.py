@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from transformers import pipeline
 from collections import Counter
 import numpy as np
+import torch
+from codecarbon import EmissionsTracker
 
 def load_data(csv_file):
     """Load data from a CSV file"""
@@ -84,9 +86,21 @@ def main():
     data = load_data(csv_file)
     out_dir = "out"
     classifier = get_emotion_pipeline()
+
+    # Start CodeCarbon tracker
+    tracker = EmissionsTracker(project_name="Emotion Analysis GoT", 
+                              experiment_id="emotion_analysis",
+                              output_dir = out_dir)
     
+    tracker.start_task("Analyze_emotions")
     analyze_season_emotions(data, out_dir, classifier)
+    tracker.stop_task()
+
+    tracker.start_task("Calculate_relative_freq")
     calculate_relative_frequency(data, out_dir, classifier)
+    tracker.stop_task()
+
+    _ = tracker.stop()
 
 if __name__ == "__main__":
     main()

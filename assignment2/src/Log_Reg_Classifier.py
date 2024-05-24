@@ -13,6 +13,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 from joblib import dump
+from codecarbon import EmissionsTracker
 
 
 # Load data from CSV file
@@ -87,30 +88,50 @@ def main():
     out_folder = "out"
     models_folder = "models"
 
+    # Create out directory if it does not exist
+    if not os.path.exists(os.path.join("out","emissions")):
+        os.makedirs(os.path.join("out","emissions"))
+
+   # Start CodeCarbon tracker
+    tracker = EmissionsTracker(project_name="Text Classification", 
+                              experiment_id="text_classifier",
+                              output_dir = os.path.join("out" , "emissions"))
+
     # Load data
+    tracker.start_task("load_data")
     data = load_data(data_path)
+    tracker.stop_task()
 
     # Creating variables
     x = data["text"]
     y = data["label"]
 
     # Process text data
+    tracker.start_task("process_text_data")
     x_train_feats, x_test_feats, y_train, y_test, vectorizer = process_text_data(x, y)
+    tracker.stop_task()
 
     # Train classifier
+    tracker.start_task("train_classifier_logreg")
     classifier = train_classifier(x_train_feats, y_train)
+    tracker.stop_task
 
     # Predict on test data
+    tracker.start_task("prediction_logreg")
     y_pred = classifier.predict(x_test_feats)
+    tracker.stop_task
 
     # Get classification report
     classifier_report = metrics.classification_report(y_test, y_pred)
 
     # Save results
     save_results(out_folder, models_folder, classifier_report, classifier, vectorizer)
+   
 
     print("Classification report saved to 'out' folder as LogReg_classification_report.txt")
     print("Trained models and vectorizers saved to 'models' folder")
+
+    _ = tracker.stop()
 
 # Run main()
 if __name__ == "__main__":

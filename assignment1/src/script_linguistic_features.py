@@ -11,6 +11,7 @@ import os
 import pandas as pd
 import spacy
 import re
+from codecarbon import EmissionsTracker
 
 # Loading spacy
 ## Download spaCy module by: python -m spacy download en_core_web_md
