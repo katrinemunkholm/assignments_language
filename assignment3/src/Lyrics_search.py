@@ -1,7 +1,7 @@
 """
 Assignment 3 - Query expansion with word embeddings
 Author: Katrine Munkholm Hygebjerg-Hansen
-Elective: Visual Analytics, Cultural Data Science spring 2024
+Elective: Language Analytics, Cultural Data Science spring 2024
 Teacher: Ross Deans Kristensen-McLachlan
 
 """

@@ -1,58 +1,87 @@
-# Query Expansion with Word Embeddings
-
-- Author: Katrine Munkholm Hygebjerg-Hansen
-- Elective: Visual Analytics, Cultural Data Science Spring 2024
-- Teacher: Ross Deans Kristensen-McLachlan
+# Assignment 3 - Query Expansion with Word Embeddings
 
 ## Description
 
-This script performs query expansion with word embeddings on a corpus of song lyrics. It allows users to specify an artist and a target word for query expansion, and then calculates the percentage of songs by that artist containing words related to the expanded query. The script utilizes pre-trained word embeddings from the "glove-wiki-gigaword-50" model via Gensim.
+This repository contains a script for query expansion with word embeddings on a corpus of song lyrics. The process involves selecting a keyword, finding terms related to this keyword using the "glove-wiki-gigaword-50" model from Gensim, and computing how many songs by a given artist contain any of these terms.
 
+### Task Overview
 
-## Features
+The primary objectives of this assignment are:
+1. Load song lyrics data.
+2. Utilize a pre-trained word embeddings model to expand a given query.
+3. Calculate the percentage of songs by a specified artist that include terms related to the expanded query.
+4. Output and save these results in a structured format.
 
-- **Loading Data:** The script loads song lyric data from a CSV file.
-- **Query Expansion:** It expands the query by finding the most similar words using word embeddings. This number is set to "5", meaning that it includes the 5 words that are most similar to the search term in the search.
-- **Percentage Calculation:** It calculates the percentage of songs by a given artist containing words related to the expanded query.
-- **Results Saving:** The results are saved to a CSV file, with new results appended to the existing file.
+## Data Source
 
-## Reproduction
+The dataset used is the "57,650 English-language songs" corpus, which can be accessed for download [here] (https://www.kaggle.com/datasets/joebeachcapital/57651-spotify-songs)
 
-The script assumes the following structure of the repository:
-```
-assignment3/
-│
-├── data/
-│ └── SpotifyMillionSongDataset_exported.csv
-│ 
-├── out/
-│     └── Search_results.csv
-│ 
-├── src/
-│ └── env
-│ └── Lyrics_search.py
-│
-├── requirements.txt
-└── README.md
+### Environment Setup and Execution
+
+1. **Environment Setup**:
+To set up a virtual environment and install the required packages, run the following in the command line:
+
+```bash
+bash setup.sh
 ```
 
-1. Install required packages by running the following code in the command line:
+2. **Running the Script**:
+To run the script, run the following command and write arguments of your choice:
 
-```pip install -r requirements.txt```
-
-
-2. To run the script, use the following command:
-
-```
+```bash
 bash run.sh --artist "Artist Name" --search-term "Search Term"
 ```
 
-## Output
+***Example: bash run.sh --artist "Michael Jackson" --search-term "world"***
 
-After running the script, the following output is displayed:
+### Command Line Arguments
 
-- The percentage of songs by the specified artist containing words related to the search term and similar terms is printed to the console.
-- If the query expansion is successful and results are saved to the CSV file, a confirmation message indicating the location of the saved file is displayed.
+The script accepts and requires the following command line arguments:
+- `--artist`: Specifies the artist to analyze.
+- `--search-term`: The keyword for which to expand the query.
 
-Example Output:
-"68.33% of Justin Timberlake's songs contain words related to baby and similar terms."
+## Summary of Key Points from the Outputs
+
+The outputs include the percentage of songs by the specified artist that contain words related to the expanded query term. These results are printed on the console and saved to a CSV file in the `out` directory.
+
+Example of results:
+
+| Artist            | Search Term | Percentage          |
+|-------------------|-------------|---------------------|
+| Justin Timberlake | baby        | 68.33               |
+| Justin Bieber     | baby        | 54.96               |
+| Madonna           | love        | 98.86               |
+| Khruangbin        | love        | 0.00                |
+| Stevie Wonder     | life        | 89.93               |
+| Michael Jackson   | world       | 66.48               |
+
+Where 'Percentage' specify the percentage of songs by the artist that contain words related to the search term.
+A result of 0.00%, as for Khruangbin, likely indicates that the dataset does not include any lyrics from Khruangbin. 
+
+## Discussion of Limitations and Possible Steps to Improvement
+
+The current implementation relies on a specific word embedding model, which may limit its applicability to diverse linguistic contexts or slangs in lyrics. Future improvements could include:
+- Using different or multiple embedding models to capture a broader range of linguistic nuances.
+- Implementing more complex query expansion techniques such as semantic similarity.
+- Implementing a statement to check if the artist exists in the dataset.
+
+## File Structure
+
+The expected file structure for running this script is as follows:
+```
+assignment3/
+│
+├── in/
+│   └── SpotifyMillionSongDataset_exported.csv
+│
+├── out/
+│   └── Search_results.csv
+│
+├── src/
+│   └── Lyrics_search.py
+│
+├── README.md
+├── requirements.txt
+├── setup.sh
+└── run.sh
+```

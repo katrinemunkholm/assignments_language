@@ -1,11 +1,11 @@
 """
 Assignment 4 - Emotion analysis with pre-trained language models
 Author: Katrine Munkholm Hygebjerg-Hansen
-Elective: Visual Analytics, Cultural Data Science spring 2024
+Elective: Language Analytics, Cultural Data Science spring 2024
 Teacher: Ross Deans Kristensen-McLachlan
 """
 
-
+# Importing neccessary libraries
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -15,9 +15,16 @@ import numpy as np
 import torch
 from codecarbon import EmissionsTracker
 
+
 def load_data(csv_file):
     """Load data from a CSV file"""
-    return pd.read_csv(csv_file)
+    data = pd.read_csv(csv_file)
+    
+    # Check and convert 'Sentence' column to string type
+    if 'Sentence' in data.columns:
+        data['Sentence'] = data['Sentence'].astype(str)
+    
+    return data
 
 def get_emotion_pipeline():
     """Initialize and return emotion classification pipeline"""
@@ -43,7 +50,7 @@ def calculate_relative_frequency(data, out_dir, classifier):
     relative_frequencies = {emotion: count / total_lines for emotion, count in emotion_counts.items()}
     counts = list(emotion_counts.values())
 
-    colormap = plt.cm.Pastel1  # Use the same pastel colormap as in analyze_season_emotions
+    colormap = plt.cm.Pastel1  
     color_cycle = [colormap(i) for i in np.linspace(0, 1, len(relative_frequencies))]
 
     # Plotting pie chart with bold fonts, colormap colors, and detailed labels
@@ -60,7 +67,7 @@ def calculate_relative_frequency(data, out_dir, classifier):
 def analyze_season_emotions(data, out_dir, classifier):
     """Analyze the emotional profile for each season using the preloaded classifier"""
     seasons = sorted(data['Season'].unique())
-    colormap = plt.cm.Pastel1  # Use a pastel colormap
+    colormap = plt.cm.Pastel1  
     for season in seasons:
         season_data = data[data['Season'] == season]
         emotions = []
@@ -81,6 +88,7 @@ def analyze_season_emotions(data, out_dir, classifier):
         plt.savefig(os.path.join(out_dir, f"{season}_emotion_distribution.png"))
         plt.close()
 
+# Main function to run tasks
 def main():
     csv_file = "in/Game_of_Thrones_Script.csv"
     data = load_data(csv_file)

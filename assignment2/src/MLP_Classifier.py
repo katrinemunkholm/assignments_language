@@ -1,7 +1,7 @@
 """
-Assignment 2 - Text classification benchmarks 
+Assignment 2 - Text classification benchmarks (Script for MLP Classifier)
 # Author: Katrine Munkholm Hygebjerg-Hansen
-# Elective: Visual Analytics, Cultural Data Science Spring 2024
+# Elective: Language Analytics, Cultural Data Science Spring 2024
 # Teacher: Ross Deans Kristensen-McLachlan
 """
 
@@ -85,7 +85,7 @@ def save_results(out_folder, models_folder, classifier_report, classifier, vecto
     dump(classifier, os.path.join(models_folder, "MLP_classifier.joblib"))
     dump(vectorizer, os.path.join(models_folder, "tfid_vectorizer.joblib"))
 
-# Defining main() to perform task from functions
+# Defining main() to perform tasks from functions
 def main():
     # Defining path to folders 
     data_path = os.path.join("in", "fake_or_real_news.csv")

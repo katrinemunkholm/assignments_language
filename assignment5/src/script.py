@@ -2,7 +2,7 @@
 """
 Assignment 5  - Evaluating environmental impact of your exam portfolio
 Author: Katrine Munkholm Hygebjerg-Hansen
-Elective: Visual Analytics, Cultural Data Science spring 2024
+Elective: Language Analytics, Cultural Data Science spring 2024
 Teacher: Ross Deans Kristensen-McLachlan
 """
 
