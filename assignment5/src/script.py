@@ -48,7 +48,7 @@ def plot_total_emissions(assignments, emissions):
     plt.ylabel('Total Emissions (CO₂eq)')
     plt.xticks(rotation=45)
     plt.grid(axis='y', linestyle='--', alpha=0.7)
-    plt.tight_layout(rect=[0, 0.05, 1, 1])  # Adjust layout to make room for text below bars
+    plt.tight_layout(rect=[0, 0.05, 1, 1])  
     plt.savefig("out/total_emissions.png")
 
 def group_and_plot_task_emissions(a1_df, a2_logreg_df, a2_mlp_df, a3_df, a4_df):
@@ -88,6 +88,7 @@ def group_and_plot_task_emissions(a1_df, a2_logreg_df, a2_mlp_df, a3_df, a4_df):
     plt.grid(True, linestyle='--', alpha=0.7)
     plt.tight_layout(rect=[0, 0.05, 1, 1])  
     plt.savefig("out/task_emissions.png")
+
 
 # Main function to run tasks
 def main():

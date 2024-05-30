@@ -50,10 +50,6 @@ The script generates two main output files:
 - `total_emissions.png`: A bar chart showing the total emissions for each assignment.
 - `task_emissions.png`: A stem plot showing the emissions for each task in each assignment.
 
-Example outputs:
-![Total emissions](out/total_emissions.png)
-
-![Task emissions](out/task_emissions.png)
 
 ## Results and Interpretation
 
@@ -64,7 +60,7 @@ Example outputs:
 In particular, the tasks Analyze_emotions and Calculate_relative_freq required running the emotion classification model on numerous text inputs from the Game of Thrones scripts. This large-scale processing of text data through a transformer model significantly increased the overall computational load, leading to higher CO₂ emissions. 
 
 ### Which specific tasks generated the most emissions in terms of CO₂eq? Again, explain why this might be.
-The task Analyze_emotions in Assignment 4 generated significant emissions. This could be due to the resource-intensive nature of the task, involving the repeated application of a transformer-based model on a large dataset. Transformer models, such as the one used here, are known for their high computational cost, particularly when processing large volumes of text data.
+The tasks **Calculate_relative_freq** and **Analyze_emotions** in Assignment 4 generated significant emissions (24.49 and 23.75 respectively). This could be due to the resource-intensive nature of the tasks, involving the repeated application of a transformer-based model on a large dataset. Transformer models, such as the one used here, are known for their high computational cost, particularly when processing large volumes of text data.
 
 - **Assignment 1** - Linguistic Analysis with SpaCy, also contributed a notable amount of emissions, but its emissions were concentrated in a single task. This assignment involved processing text data using SpaCy, a popular NLP library, to extract linguistic features such as part-of-speech tags and named entities. The task of loading large text files, processing them with SpaCy, and performing detailed linguistic analysis requires significant computational resources. While SpaCy is optimized for efficiency, the volume of text data and the complexity of the processing tasks (e.g., POS tagging and named entity recognition) contribute to the overall emissions. Despite being measured as a single task, this assignment still made a significant contribution to the total emissions at 43.48%
 
@@ -109,10 +105,11 @@ assignment5/
 
 ## Script
 
-The script used to generate the results is `script.py`. It includes functions to read the CSV files, calculate total emissions, and plot the results. The main steps are:
+The script used to generate the plots is `script.py` from the src folder. It includes functions to read the CSV files, calculate total emissions, and plot the results. The main steps are:
 1. Reading the emissions data from the CSV files.
 2. Calculating total emissions for each assignment.
 3. Plotting the total emissions for each assignment.
 4. Grouping and plotting emissions for each task in each assignment.
-
 The script includes explanatory comments and markdown cells.
+
+The emissions themselves are measured when running the assignments individually, and the trackers can be seen in those scripts. 
